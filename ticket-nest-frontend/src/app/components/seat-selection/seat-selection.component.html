@@ -1,0 +1,49 @@
+<!-- Client Header -->
+<app-client-header></app-client-header>
+
+<!-- Select Seats Section -->
+<div class="min-h-screen bg-gray-950 text-white px-6 py-16">
+  <div class="max-w-4xl mx-auto">
+    <!-- Title -->
+    <h2 class="text-4xl font-bold text-red-500 text-center mb-10">Select Your Seats</h2>
+
+    <!-- Screen Indicator -->
+    <div class="text-center bg-gray-800 text-gray-300 py-3 rounded-lg mb-8 shadow-inner">
+      Screen This Side
+    </div>
+
+    <!-- Seat Layout -->
+    <div class="space-y-4">
+      <div
+        *ngFor="let row of rows"
+        class="flex justify-center space-x-2"
+      >
+        <button
+          *ngFor="let col of cols"
+          (click)="toggleSeat(row + col)"
+          [ngClass]="{
+            'bg-gray-700': !isSelected(row + col),
+            'bg-red-500': isSelected(row + col)
+          }"
+          class="w-10 h-10 rounded-md text-white font-medium hover:bg-red-600 transition"
+        >
+          {{ row + col }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-10 text-center">
+      <p *ngIf="selected.length" class="text-gray-300 mb-4">
+        Selected Seats: <span class="text-white font-semibold">{{ selected.join(', ') }}</span>
+      </p>
+      <button
+        (click)="confirmSeats()"
+        [disabled]="selected.length === 0"
+        class="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-md font-semibold transition disabled:opacity-50"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>

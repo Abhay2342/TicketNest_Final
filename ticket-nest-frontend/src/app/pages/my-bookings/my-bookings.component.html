@@ -1,0 +1,28 @@
+<app-client-header></app-client-header>
+
+<div class="min-h-screen bg-gray-950 text-white px-6 py-16">
+  <section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-red-500 mb-6 text-center">🎟️ My Bookings</h1>
+    <p class="text-lg text-gray-300 mb-8 text-center">Here are your upcoming and past ticket bookings.</p>
+
+    <div *ngIf="tickets.length === 0" class="text-center text-gray-400">
+      <p>No bookings found. Start browsing movies now!</p>
+      <button (click)="browseMovies()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition mt-4">
+        🎬 Browse Movies
+      </button>
+    </div>
+
+    <div *ngFor="let ticket of tickets" class="bg-gray-900 p-4 rounded-lg shadow-md mb-6">
+      <p class="text-lg mb-2"><strong>Ticket ID:</strong> {{ ticket.id }}</p>
+      <p class="text-lg mb-2"><strong>Status:</strong> {{ ticket.status }}</p>
+      <p class="text-lg mb-2"><strong>Seats:</strong> {{ ticket.seatNumbers }}</p>
+      <p class="text-lg mb-2"><strong>Booking Time:</strong> {{ ticket.bookingTiming | date: 'medium' }}</p>
+      <p class="text-lg mb-2"><strong>Show Date:</strong> {{ ticket.status }}</p>
+      <p class="text-lg mb-2"><strong>Show Date:</strong> {{ ticket.showDate }}</p>
+      <p class="text-lg mb-2"><strong>Show Time:</strong> {{ ticket.showTime }}</p>
+      <button (click)="cancelBooking(ticket.id)" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mt-3">
+        ❌ Cancel Booking
+      </button>
+    </div>
+  </section>
+</div>

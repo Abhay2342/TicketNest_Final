@@ -1,0 +1,41 @@
+<app-client-header></app-client-header>
+
+<div class="min-h-screen bg-gray-950 text-white px-6 py-16">
+  <section class="text-center max-w-3xl mx-auto">
+    <h1 class="text-5xl font-bold text-red-500 mb-6">🎟️ Welcome to TicketNest</h1>
+    <p class="text-xl text-gray-300 mb-10">Book your movie tickets effortlessly — anytime, anywhere.</p>
+
+    <div class="flex justify-center flex-wrap gap-6">
+      <button
+        (click)="browseMovies()"
+        class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+      >
+        🎬 Browse Movies
+      </button>
+
+      <button
+        *ngIf="!isLoggedIn"
+        (click)="goToLogin()"
+        class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+      >
+        🔐 Login
+      </button>
+
+      <button
+        *ngIf="!isLoggedIn"
+        (click)="goToRegister()"
+        class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+      >
+        📝 Register
+      </button>
+
+      <button
+        *ngIf="isLoggedIn"
+        (click)="logout()"
+        class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+      >
+        🚪 Logout
+      </button>
+    </div>
+  </section>
+</div>

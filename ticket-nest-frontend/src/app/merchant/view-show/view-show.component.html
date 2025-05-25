@@ -1,0 +1,42 @@
+<div class="min-h-screen bg-gray-950 text-white px-6 py-12">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold text-center text-red-500 mb-10">🎟️ All ShowTimings</h2>
+
+    <div *ngIf="showTimings.length > 0; else noData">
+      <div class="overflow-x-auto rounded-xl shadow-lg">
+        <table class="w-full bg-gray-900 rounded-xl text-sm md:text-base">
+          <thead>
+            <tr class="bg-red-600 text-white text-left">
+              <th class="py-3 px-4">Movie</th>
+              <th class="py-3 px-4">Cinema</th>
+              <th class="py-3 px-4">Show Date</th>
+              <th class="py-3 px-4">Show Time</th>
+              <th class="py-3 px-4">Seats</th>
+              <th class="py-3 px-4">Price</th>
+    
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let ticket of showTimings"
+              class="border-b border-gray-800 hover:bg-gray-800 transition"
+            >
+              <td class="py-3 px-4">{{ ticket.movieId }}</td>
+              <td class="py-3 px-4">{{ ticket.cinemaId }}</td>
+              <td class="py-3 px-4">{{ ticket.showDate }}</td>
+              <td class="py-3 px-4">{{ ticket.showTime }}</td>
+              <td class="py-3 px-4">{{ ticket.totalSeats }}</td>
+              <td class="py-3 px-4">{{ ticket.ticketPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <div class="text-center mt-10 text-gray-400 text-lg">
+        😔 No showTimings found.
+      </div>
+    </ng-template>
+  </div>
+</div>

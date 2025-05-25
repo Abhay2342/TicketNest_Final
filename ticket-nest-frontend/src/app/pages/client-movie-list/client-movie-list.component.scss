@@ -1,0 +1,5 @@
+:host {
+  display: block;
+  position: relative; // or static
+  z-index: 50; // optional if not overlapping
+}

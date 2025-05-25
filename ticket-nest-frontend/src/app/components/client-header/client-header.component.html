@@ -1,0 +1,65 @@
+<!-- Client Navbar -->
+<nav class="bg-gray-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="logo">🎟️ TicketNest</div>
+  
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 text-sm font-medium items-center">
+        <a routerLink="/home" routerLinkActive="text-red-500" class="hover:text-red-400 transition font-semibold">Home</a>
+        <a routerLink="/movies" routerLinkActive="text-red-500" class="hover:text-red-400 transition font-semibold">Movies</a>
+  
+        <!-- Conditionally show My Bookings and Profile if logged in -->
+        <a *ngIf="isLoggedIn" routerLink="/my-bookings" routerLinkActive="text-red-500" class="hover:text-red-400 transition">My Bookings</a>
+        <a *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive="text-red-500" class="hover:text-red-400 transition">Profile</a>
+  
+        <!-- Conditionally show Logout if logged in -->
+        <button *ngIf="isLoggedIn" (click)="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-1 rounded text-white">
+          Logout
+        </button>
+  
+        <!-- Conditionally show Login/Register if not logged in -->
+        <button *ngIf="!isLoggedIn" (click)="goToLogin()" class="bg-gray-700 hover:bg-gray-600 px-4 py-1 rounded text-white">
+          Login
+        </button>
+        <button *ngIf="!isLoggedIn" (click)="goToRegister()" class="bg-gray-700 hover:bg-gray-600 px-4 py-1 rounded text-white">
+          Register
+        </button>
+      </div>
+  
+      <!-- Mobile Toggle -->
+      <div class="md:hidden">
+        <button (click)="toggleMenu()">
+          <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path *ngIf="!isMenuOpen" d="M4 6h16M4 12h16M4 18h16" />
+            <path *ngIf="isMenuOpen" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div *ngIf="isMenuOpen" class="md:hidden px-4 pb-4">
+      <a routerLink="/home" routerLinkActive="text-red-500" class="block py-2 text-sm hover:text-red-400">Home</a>
+      <a routerLink="/movies" routerLinkActive="text-red-500" class="block py-2 text-sm hover:text-red-400">Movies</a>
+  
+      <!-- Conditionally show My Bookings and Profile if logged in -->
+      <a *ngIf="isLoggedIn" routerLink="/my-bookings"  routerLinkActive="text-red-500" class="block py-2 text-sm hover:text-red-400">My Bookings</a>
+      <a *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive="text-red-500" class="block py-2 text-sm hover:text-red-400">Profile</a>
+  
+      <!-- Conditionally show Logout if logged in -->
+      <button *ngIf="isLoggedIn" (click)="logout()" class="block w-full mt-2 bg-red-500 hover:bg-red-600 py-2 rounded text-white text-sm">
+        Logout
+      </button>
+  
+      <!-- Conditionally show Login/Register if not logged in -->
+      <button *ngIf="!isLoggedIn" (click)="goToLogin()" class="block w-full mt-2 bg-gray-700 hover:bg-gray-600 py-2 rounded text-white text-sm">
+        Login
+      </button>
+      <button *ngIf="!isLoggedIn" (click)="goToRegister()" class="block w-full mt-2 bg-gray-700 hover:bg-gray-600 py-2 rounded text-white text-sm">
+        Register
+      </button>
+    </div>
+  </nav>
+  

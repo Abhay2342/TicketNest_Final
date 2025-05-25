@@ -1,0 +1,44 @@
+<!-- Client Header -->
+<app-client-header></app-client-header>
+
+<!-- Select Cinema Section -->
+<div class="min-h-screen bg-gray-950 text-white px-6 py-16">
+  <div class="max-w-7xl mx-auto">
+    <!-- Title -->
+    <h2 class="text-4xl font-bold text-red-500 text-center mb-10">Select Cinema</h2>
+
+    <!-- Search Bar -->
+    <div class="flex justify-center mb-10">
+      <input
+        type="text"
+        placeholder="Search by location..."
+        [(ngModel)]="searchLocation"
+        (input)="filterCinemas()"
+        class="w-full max-w-md px-6 py-4 bg-gray-800 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+      />
+    </div>
+
+    <!-- Cinema Cards -->
+    <div *ngIf="filteredCinemas.length > 0; else noResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-red-500/30 transition"
+        *ngFor="let cinema of filteredCinemas"
+      >
+        <h3 class="text-2xl font-semibold mb-2 text-white">{{ cinema.name }}</h3>
+        <p class="text-gray-300 mb-2">{{ cinema.description }}</p>
+        <p class="text-gray-400 mb-4"><strong>Location:</strong> {{ cinema.location }}</p>
+        <button
+          (click)="selectCinema(cinema)"
+          class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-md font-medium transition"
+        >
+          Book Ticket
+        </button>
+      </div>
+    </div>
+
+    <!-- No Results Template -->
+    <ng-template #noResults>
+      <p class="text-center text-gray-400 mt-12 text-lg">No cinemas found for this movie in the selected location.</p>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .screen {
+    background: #eee;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .seat-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .seat-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button.seat {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+  }
+  
+  button.seat:hover {
+    background-color: #f0f0f0;
+  }
+  
+  button.seat.selected {
+    background-color: #3f51b5;
+    color: white;
+    border-color: #3f51b5;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+  
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+  

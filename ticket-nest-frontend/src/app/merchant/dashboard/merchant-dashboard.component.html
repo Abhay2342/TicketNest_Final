@@ -1,0 +1,39 @@
+<!-- merchant-dashboard.component.html -->
+
+<div class="min-h-screen flex bg-gray-950 text-white">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-900 p-6 space-y-6 shadow-xl">
+    <h2 class="text-3xl font-bold text-red-500 mb-8">🎬 TicketNest</h2>
+    
+    <nav class="space-y-4">
+      <button routerLink="/merchant/add-cinema" routerLinkActive="bg-red-500 text-white" class="block w-full text-left py-2 px-4 rounded hover:bg-red-500 transition">
+        ➕ Add Cinema
+      </button>
+      <button routerLink="/merchant/add-movie" routerLinkActive="bg-red-500 text-white" class="block w-full text-left py-2 px-4 rounded hover:bg-red-500 transition">
+        🎞️ Add Movie
+      </button>
+      <button routerLink="/merchant/add-show" routerLinkActive="bg-red-500 text-white" class="block w-full text-left py-2 px-4 rounded hover:bg-red-500 transition">
+        🎟️ Add Show Timings
+      </button>
+      <button routerLink="/merchant/view-show" routerLinkActive="bg-red-500 text-white" class="block w-full text-left py-2 px-4 rounded hover:bg-red-500 transition">
+        ⏰  View Show Timings
+      </button>
+      <button routerLink="/merchant/bookings" routerLinkActive="bg-red-500 text-white" class="block w-full text-left py-2 px-4 rounded hover:bg-red-500 transition">
+        📋 View Bookings
+      </button>
+
+        <button
+        style="width: 100%;"
+          (click)="logout()"
+          class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition"
+        >
+          🔒 Logout
+        </button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+    <router-outlet></router-outlet>
+  </main>
+</div>

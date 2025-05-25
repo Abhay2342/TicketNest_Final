@@ -1,0 +1,101 @@
+<!-- Client Header -->
+<app-client-header></app-client-header>
+
+<!-- Booking Summary Section -->
+<div class="min-h-screen bg-gray-950 text-white px-6 py-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    
+    <!-- Left Column (Booking Instructions & Promotions) -->
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+      <h3 class="text-2xl font-semibold text-red-500 mb-6">Booking Instructions</h3>
+
+      <!-- Booking Instructions -->
+      <p class="text-lg mb-4">
+        Please make sure to check the show timings and available seats before proceeding to payment. You can select your preferred seats from the seat layout on the next page.
+      </p>
+      <p class="text-lg mb-4">
+        If you face any issues during the booking process, please contact customer support for assistance.
+      </p>
+
+      <!-- Promotional Message or Additional Information -->
+      <h3 class="text-2xl font-semibold text-red-500 mb-6">Exclusive Offers</h3>
+      <p class="text-lg mb-4">
+        Enjoy a free snack with your movie ticket! Add a combo to your order before checking out.
+      </p>
+      <p class="text-lg mb-4">
+        Don't forget to check out our VIP seats for a premium experience with extra legroom, blankets, and exclusive food options!
+      </p>
+    </div>
+
+    <!-- Right Column (Booking Summary) -->
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+      <h2 class="text-4xl font-bold text-red-500 text-center mb-10">Booking Summary</h2>
+
+      <!-- Before Payment -->
+      <div class="mb-8" *ngIf="!paymentCompleted">
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-gray-300 mb-2">🎬 Movie Details</h3>
+          <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+            <p class="text-lg mb-2"><strong>Movie:</strong> {{ bookingService.getMovie()?.title }}</p>
+            <p class="text-lg mb-2"><strong>Duration:</strong> {{ bookingService.getMovie()?.durationMinutes }} mins</p>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-gray-300 mb-2">📍 Cinema Details</h3>
+          <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+            <p class="text-lg mb-2"><strong>Cinema:</strong> {{ bookingService.getCinema()?.name }}</p>
+            <p class="text-lg mb-2"><strong>Location:</strong> {{ bookingService.getCinema()?.location }}</p>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-gray-300 mb-2">🗓 Show Details</h3>
+          <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+            <p class="text-lg mb-2"><strong>Date:</strong> {{ bookingService.getShow()?.showDate }}</p>
+            <p class="text-lg mb-2"><strong>Time:</strong> {{ bookingService.getShow()?.showTime }}</p>
+            <p class="text-lg mb-2"><strong>Price:</strong> ₹{{ bookingService.getShow()?.ticketPrice }}</p>
+            <p class="text-lg mb-2"><strong>Seats:</strong> {{ bookingService.selectedSeats.join(', ') }}</p>
+            <p class="text-lg mb-2"><strong>Total Price:</strong> ₹{{ bookingService.getShow()?.ticketPrice * bookingService.selectedSeats.length }}</p>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="makePayment()"
+            class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-md font-semibold transition"
+          >
+            Make Payment
+          </button>
+        </div>
+      </div>
+
+      <!-- After Payment -->
+      <div *ngIf="paymentCompleted && ticket" class="mt-8">
+        <h3 class="text-2xl font-semibold text-green-500 mb-6">🎟️ Your Ticket</h3>
+        
+        <!-- Ticket Details Section -->
+        <div class="bg-gray-900 p-4 rounded-lg shadow-md mb-6">
+          <p class="text-lg mb-2"><strong>Ticket ID:</strong> {{ ticket.id }}</p>
+          <p class="text-lg mb-2"><strong>Status:</strong> {{ ticket.status }}</p>
+          <p class="text-lg mb-2"><strong>Seats:</strong> {{ ticket.seatNumbers }}</p>
+          <p class="text-lg mb-2"><strong>Booking Time:</strong> {{ ticket.bookingTiming | date: 'medium' }}</p>
+          <p class="text-lg mb-2"><strong>Show Date:</strong> {{ ticket?.showDate | date: 'medium' }}</p>
+          <p class="text-lg mb-2"><strong>Show Time:</strong>{{ ticket?.showTime | date: 'medium' }}</p>
+        </div>
+
+        <!-- QR Code Section -->
+        <p class="text-lg mb-4"><strong>QR Code:</strong></p>
+        <img
+          class="mx-auto mb-4"
+          [src]="'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + ticket.qrCode"
+          alt="QR Code"
+        />
+
+        <p class="text-center text-gray-400 text-lg">
+          <em>📱 Scan this QR code at the cinema to verify your ticket.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

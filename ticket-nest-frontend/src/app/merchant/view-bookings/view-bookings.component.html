@@ -1,0 +1,50 @@
+<div class="min-h-screen bg-gray-950 text-white px-6 py-12">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold text-center text-red-500 mb-10">🎟️ All Bookings</h2>
+
+    <div *ngIf="bookings.length > 0; else noData">
+      <div class="overflow-x-auto rounded-xl shadow-lg">
+        <table class="w-full bg-gray-900 rounded-xl text-sm md:text-base">
+          <thead>
+            <tr class="bg-red-600 text-white text-left">
+              <th class="py-3 px-4">Ticket ID</th>
+              <th class="py-3 px-4">Movie</th>
+              <th class="py-3 px-4">Booking Time</th>
+              <th class="py-3 px-4">Seats</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let ticket of bookings"
+              class="border-b border-gray-800 hover:bg-gray-800 transition"
+            >
+              <td class="py-3 px-4 font-semibold">{{ ticket.id }}</td>
+              <td class="py-3 px-4">{{ ticket.movieName }}</td>
+              <td class="py-3 px-4">{{ ticket.bookingTiming }}</td>
+              <td class="py-3 px-4">{{ ticket.seatsBooked }}</td>
+              <td class="py-3 px-4">
+                <span
+                  class="inline-block px-3 py-1 rounded-full text-xs font-bold"
+                  [ngClass]="{
+                    'bg-green-600 text-white': ticket.status === 'CONFIRMED',
+                    'bg-yellow-500 text-black': ticket.status === 'PENDING',
+                    'bg-red-600 text-white': ticket.status === 'CANCELLED'
+                  }"
+                >
+                  {{ ticket.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <div class="text-center mt-10 text-gray-400 text-lg">
+        😔 No bookings found.
+      </div>
+    </ng-template>
+  </div>
+</div>
